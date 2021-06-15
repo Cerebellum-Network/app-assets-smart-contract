@@ -83,7 +83,6 @@ mod enterprise_assets {
     /// The ERC-20 result type.
     pub type Result<T> = core::result::Result<T, Error>;
 
-
     impl EnterpriseAssets {
         #[ink(constructor)]
         pub fn new(initial_supply: Balance, ds_acc: Vec<AccountId>) -> Self {
@@ -188,9 +187,8 @@ mod enterprise_assets {
                 self.transfer_from_to(caller, user_address, value, transaction_fee)?;
                 Ok(())
             } else {
-                return Err(Error:: InValidTimelimit)
+                return Err(Error::InValidTimelimit);
             }
-
         }
 
         fn transfer_from_to(
@@ -199,9 +197,9 @@ mod enterprise_assets {
             to: AccountId,
             value: Balance,
             transaction_fee: Balance,
-        ) -> Result<()>  {
+        ) -> Result<()> {
             if value <= 0 {
-                return Err(Error:: InValidValue)
+                return Err(Error::InValidValue);
             }
             let ds_account_list = self.get_distribution_accounts();
             let is_from_ds: bool = ds_account_list.contains(&from);
@@ -209,20 +207,19 @@ mod enterprise_assets {
 
             if is_from_ds || is_to_ds {
                 if transaction_fee > self.env().balance() {
-
                     self.env().emit_event(InsufficientNativeBalance {
                         to: Some(from),
                         balance: self.env().balance(),
-                        txn_fee: transaction_fee
+                        txn_fee: transaction_fee,
                     });
-                    return Err(Error:: InsufficientNativeBalance)
+                    return Err(Error::InsufficientNativeBalance);
                 }
                 // Refund transaction fee to the caller based on this: https://github.com/Cerebellum-Network/private-standalone-network-node/blob/dev/docs/fee_abstraction.md#fee-abstraction-support
                 let _refund = self.env().transfer(from, transaction_fee);
 
                 let from_balance = self.balance_of_or_zero(&from);
                 if from_balance < value {
-                    return Err(Error::InsufficientBalance)
+                    return Err(Error::InsufficientBalance);
                 }
 
                 // Update the sender's balance.
@@ -244,9 +241,8 @@ mod enterprise_assets {
                     to: Some(to),
                     value,
                 });
-                return Err(Error::NotADistributionAccount)
+                return Err(Error::NotADistributionAccount);
             }
-
         }
 
         fn balance_of_or_zero(&self, owner: &AccountId) -> Balance {
@@ -274,8 +270,7 @@ mod enterprise_assets {
             let contract_balance = 100;
             let total_supply = 1000;
             let accounts = default_accounts();
-            let enterprise_assets =
-                create_contract(contract_balance, total_supply, vec![]);
+            let enterprise_assets = create_contract(contract_balance, total_supply, vec![]);
             assert_eq!(enterprise_assets.total_supply(), total_supply);
             let ds_accounts = enterprise_assets.get_distribution_accounts();
             assert_eq!(ds_accounts.len(), 1);
@@ -338,13 +333,25 @@ mod enterprise_assets {
                 create_contract(contract_balance, total_supply, vec![accounts.alice]);
 
             assert_eq!(get_balance(accounts.eve), 0);
-            assert_eq!(enterprise_assets.transfer(accounts.bob, 10, 110), Err(Error::InsufficientNativeBalance));
-            assert_eq!(enterprise_assets.transfer(accounts.bob, 0, 110), Err(Error::InValidValue));
-            assert_eq!(enterprise_assets.transfer(accounts.eve, 10001, 10), Err(Error::InsufficientBalance));
+            assert_eq!(
+                enterprise_assets.transfer(accounts.bob, 10, 110),
+                Err(Error::InsufficientNativeBalance)
+            );
+            assert_eq!(
+                enterprise_assets.transfer(accounts.bob, 0, 110),
+                Err(Error::InValidValue)
+            );
+            assert_eq!(
+                enterprise_assets.transfer(accounts.eve, 10001, 10),
+                Err(Error::InsufficientBalance)
+            );
 
             // set sender
             set_sender(accounts.eve);
-            assert_eq!(enterprise_assets.transfer(accounts.bob, 10, 10),  Err(Error::NotADistributionAccount));
+            assert_eq!(
+                enterprise_assets.transfer(accounts.bob, 10, 10),
+                Err(Error::NotADistributionAccount)
+            );
         }
 
         #[ink::test]
@@ -352,8 +359,7 @@ mod enterprise_assets {
             let contract_balance = 100;
             let total_supply = 1000;
             let accounts = default_accounts();
-            let enterprise_assets =
-                create_contract(contract_balance, total_supply, vec![]);
+            let enterprise_assets = create_contract(contract_balance, total_supply, vec![]);
 
             let ds_accounts = enterprise_assets.get_distribution_accounts();
             assert_eq!(ds_accounts.len(), 1);
@@ -365,8 +371,7 @@ mod enterprise_assets {
             let contract_balance = 100;
             let total_supply = 1000;
             let accounts = default_accounts();
-            let mut enterprise_assets =
-                create_contract(contract_balance, total_supply, vec![]);
+            let mut enterprise_assets = create_contract(contract_balance, total_supply, vec![]);
 
             let mut ds_accounts = enterprise_assets.get_distribution_accounts();
             assert_eq!(ds_accounts.len(), 1);
@@ -384,8 +389,7 @@ mod enterprise_assets {
             let contract_balance = 100;
             let total_supply = 1000;
             let accounts = default_accounts();
-            let mut enterprise_assets =
-                create_contract(contract_balance, total_supply, vec![]);
+            let mut enterprise_assets = create_contract(contract_balance, total_supply, vec![]);
 
             let mut ds_accounts = enterprise_assets.get_distribution_accounts();
             assert_eq!(ds_accounts.len(), 1);
@@ -418,7 +422,10 @@ mod enterprise_assets {
             let mut enterprise_assets =
                 create_contract(contract_balance, total_supply, vec![accounts.alice]);
 
-            assert_eq!(enterprise_assets.issue_restricted_asset(accounts.bob, 100, true, 1000, 10), Ok(()));
+            assert_eq!(
+                enterprise_assets.issue_restricted_asset(accounts.bob, 100, true, 1000, 10),
+                Ok(())
+            );
             assert_eq!(
                 enterprise_assets.get_issue_restrictive_asset(accounts.bob),
                 1000

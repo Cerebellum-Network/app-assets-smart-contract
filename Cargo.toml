@@ -1,7 +1,7 @@
 [package]
-name = "ddc"
+name = "appassets"
 version = "1.0.0"
-authors = ["[Cere Network] <[team@cere.io]>"]
+authors = ["team@cere.io"]
 edition = "2018"
 
 [dependencies]
@@ -12,15 +12,12 @@ ink_storage = { version = "3.0.0-rc3", default-features = false }
 ink_lang = { version = "3.0.0-rc3", default-features = false }
 ink_prelude = { version = "3.0.0-rc3", default-features = false }
 
-scale = { package = "parity-scale-codec", version = "2.0.1", default-features = false, features = ["derive"] }
+scale = { package = "parity-scale-codec", version = "2.1", default-features = false, features = ["derive"] }
 scale-info = { version = "0.6.0", default-features = false, features = ["derive"], optional = true }
 
-# Should be removed once bitvecto-rs/bitvec#105 is resolved
-funty = "=1.1.0"
-
 [lib]
-name = "ddc"
-path = "lib.rs"
+name = "appassets"
+path = "src/lib.rs"
 crate-type = [
 	# Used for normal contract Wasm blobs.
 	"cdylib",
@@ -37,3 +34,9 @@ std = [
     "scale-info/std",
 ]
 ink-as-dependency = []
+
+[workspace]
+members = []
+exclude = [
+	".ink"
+]

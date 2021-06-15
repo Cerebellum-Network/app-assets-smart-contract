@@ -1,13 +1,13 @@
 {
   "metadataVersion": "0.1.0",
   "source": {
-    "hash": "0x343f41b8cf072966ce537da45c0a9ca6a95db97dcd4e076c8a6fab99e7742023",
-    "language": "ink! 3.0.0-rc2",
-    "compiler": "rustc 1.50.0-nightly"
+    "hash": "0x15f638d308edb70651b0c6b5fa706bb6497692295443af87610622bfdef87566",
+    "language": "ink! 3.0.0-rc3",
+    "compiler": "rustc 1.53.0-nightly"
   },
   "contract": {
-    "name": "cere01",
-    "version": "0.1.0",
+    "name": "appassets",
+    "version": "1.0.0",
     "authors": [
       "team@cere.io"
     ]
@@ -39,7 +39,7 @@
         "name": [
           "new"
         ],
-        "selector": "0xd183512b"
+        "selector": "0x9bae9d5e"
       }
     ],
     "docs": [],
@@ -216,7 +216,7 @@
           ],
           "type": 4
         },
-        "selector": "0xdcb736b5"
+        "selector": "0xdb6375a8"
       },
       {
         "args": [
@@ -242,7 +242,7 @@
           ],
           "type": 4
         },
-        "selector": "0x56e929b2"
+        "selector": "0x0f755a56"
       },
       {
         "args": [
@@ -286,7 +286,7 @@
           ],
           "type": 13
         },
-        "selector": "0xfae3a09d"
+        "selector": "0x84a15da1"
       },
       {
         "args": [],
@@ -302,7 +302,7 @@
           ],
           "type": 12
         },
-        "selector": "0xa93f6430"
+        "selector": "0xc83eff12"
       },
       {
         "args": [
@@ -328,7 +328,7 @@
           ],
           "type": 16
         },
-        "selector": "0x81c33635"
+        "selector": "0x52845b69"
       },
       {
         "args": [
@@ -354,7 +354,7 @@
           ],
           "type": 16
         },
-        "selector": "0x4f542d67"
+        "selector": "0x17aa23ee"
       },
       {
         "args": [
@@ -380,7 +380,7 @@
           ],
           "type": 11
         },
-        "selector": "0x106c8ecb"
+        "selector": "0x84fad14e"
       },
       {
         "args": [
@@ -442,7 +442,7 @@
           ],
           "type": 13
         },
-        "selector": "0x3d186d46"
+        "selector": "0xf3e97591"
       }
     ]
   },
@@ -670,7 +670,8 @@
         "composite": {
           "fields": [
             {
-              "type": 2
+              "type": 2,
+              "typeName": "[u8; 32]"
             }
           ]
         }
@@ -705,15 +706,18 @@
           "fields": [
             {
               "name": "last_vacant",
-              "type": 6
+              "type": 6,
+              "typeName": "Index"
             },
             {
               "name": "len",
-              "type": 6
+              "type": 6,
+              "typeName": "u32"
             },
             {
               "name": "len_entries",
-              "type": 6
+              "type": 6,
+              "typeName": "u32"
             }
           ]
         }
@@ -737,7 +741,8 @@
             {
               "fields": [
                 {
-                  "type": 8
+                  "type": 8,
+                  "typeName": "VacantEntry"
                 }
               ],
               "name": "Vacant"
@@ -745,7 +750,8 @@
             {
               "fields": [
                 {
-                  "type": 1
+                  "type": 1,
+                  "typeName": "T"
                 }
               ],
               "name": "Occupied"
@@ -769,11 +775,13 @@
           "fields": [
             {
               "name": "next",
-              "type": 6
+              "type": 6,
+              "typeName": "Index"
             },
             {
               "name": "prev",
-              "type": 6
+              "type": 6,
+              "typeName": "Index"
             }
           ]
         }
@@ -791,11 +799,13 @@
           "fields": [
             {
               "name": "value",
-              "type": 4
+              "type": 4,
+              "typeName": "V"
             },
             {
               "name": "key_index",
-              "type": 6
+              "type": 6,
+              "typeName": "KeyIndex"
             }
           ]
         }
@@ -816,11 +826,13 @@
           "fields": [
             {
               "name": "value",
-              "type": 11
+              "type": 11,
+              "typeName": "V"
             },
             {
               "name": "key_index",
-              "type": 6
+              "type": 6,
+              "typeName": "KeyIndex"
             }
           ]
         }
@@ -854,7 +866,8 @@
             {
               "fields": [
                 {
-                  "type": 14
+                  "type": 14,
+                  "typeName": "T"
                 }
               ],
               "name": "Ok"
@@ -862,7 +875,8 @@
             {
               "fields": [
                 {
-                  "type": 15
+                  "type": 15,
+                  "typeName": "E"
                 }
               ],
               "name": "Err"
@@ -915,7 +929,7 @@
         }
       },
       "path": [
-        "cere01",
+        "appassets",
         "enterprise_assets",
         "Error"
       ]
@@ -935,7 +949,8 @@
             {
               "fields": [
                 {
-                  "type": 1
+                  "type": 1,
+                  "typeName": "T"
                 }
               ],
               "name": "Some"
