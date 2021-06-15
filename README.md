@@ -54,4 +54,4 @@ This doc will explain:
 In order to deploy and test Smart Contract use [Quick Start Guide](https://github.com/Cerebellum-Network/private-standalone-network-node/blob/dev/docs/tutorial.md#quick-start-guide).
 
 ## Specification
-See [Specification](./specification.md)
+See [Specification](./SPECIFICATION.md)
