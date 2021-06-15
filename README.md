@@ -9,15 +9,8 @@ This doc will explain:
 ## Release Notes
 #### vNext
 * ...
-#### v1.1.0
-* Clean up the contract
-* Added DDC Nodes API: add/list/delete
-* Removed revoke_membership
-* Removed token
 #### v1.0.0
-* DDC Smart Contract v1.0.0
-    * Basic functionality added
-* Derivative Assets Smart Contrat v0.1.0
+* Initial version of App Assets Smart Contract
 
 ## How to create Smart Contract Artificats
 
