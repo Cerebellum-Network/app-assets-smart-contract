@@ -49,7 +49,6 @@ This doc will explain:
     ```bash
     cargo +nightly contract build
     ```
-    * Upload `ddc.wasm` and `metadata.json` using a block viewer (like [Cere Testnet](https://block-viewer.cere.network/?rpc=wss%3A%2F%2Frpc.testnet.cere.network%3A9945#/contracts))
 
 ## Deploy Smart Contract and test it
 In order to deploy and test Smart Contract use [Quick Start Guide](https://github.com/Cerebellum-Network/private-standalone-network-node/blob/dev/docs/tutorial.md#quick-start-guide).
