@@ -1,4 +1,4 @@
-# CERE01: A Standard For Real-world App Assets On Ink!
+# A Standard For Real-world App Assets On Ink!
 
 Derivative Asset support for the enterprise needs, with attributes such as expiration, limit on transfers, longitudinal unlocking, redemptions, etc.
 
@@ -55,4 +55,4 @@ This doc will explain:
 In order to deploy and test Smart Contract use [Quick Start Guide](https://github.com/Cerebellum-Network/private-standalone-network-node/blob/dev/docs/tutorial.md#quick-start-guide).
 
 ## Specification
-See [Specification](./cere01/specification.md)
+See [Specification](./specification.md)

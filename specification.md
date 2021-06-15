@@ -1,4 +1,4 @@
-## CERE01 Smart Contract Specification
+## App Assets Smart Contract Specification
 ### Table Of Contents
 [Abstract](#abstract)
 
