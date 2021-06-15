@@ -7,7 +7,7 @@ RUN apt-get -y update && \
     apt-get install -y binaryen wget
 
 WORKDIR /app-assets-smart-contract
-COPY ./src /app-assets-smart-contract/src
+COPY . /app-assets-smart-contract
 
 # Install all dependencies
 ARG CARGO_CONTRACT_VERSION=0.12.1
