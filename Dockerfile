@@ -6,9 +6,8 @@ RUN apt-get -y update && \
     apt-get -y upgrade && \
     apt-get install -y binaryen wget
 
-WORKDIR /smart-contracts
-COPY ./cere01 /smart-contracts/cere01
-COPY ./cere02 /smart-contracts/cere02
+WORKDIR /app-assets-smart-contract
+COPY . /app-assets-smart-contract
 
 # Install all dependencies
 ARG CARGO_CONTRACT_VERSION=0.12.1
@@ -31,13 +30,16 @@ RUN	wget http://ftp.us.debian.org/debian/pool/main/libx/libxcrypt/libcrypt1_4.4.
 	wget http://de.archive.ubuntu.com/ubuntu/pool/universe/b/binaryen/binaryen_99-3_amd64.deb && \
 	dpkg -i binaryen_99-3_amd64.deb
 
-# Run tests and build
-WORKDIR /smart-contracts/cere02
-RUN cargo +nightly test && \
-	cargo +nightly contract build
+# Run tests
+WORKDIR /app-assets-smart-contract/src
+RUN cargo +nightly test
+# Run build
+WORKDIR /app-assets-smart-contract
+RUN cargo +nightly contract build
 
 # ===== SECOND STAGE ======
 FROM phusion/baseimage:0.11
-WORKDIR /smart-contracts
-COPY --from=builder /smart-contracts/cere02/target/ink/ddc.wasm /smart-contracts/artifacts/
-COPY --from=builder /smart-contracts/cere02/target/ink/metadata.json /smart-contracts/artifacts/
+WORKDIR /app-assets-smart-contract
+COPY --from=builder /app-assets-smart-contract/target/ink/appassets.contract /app-assets-smart-contract/artifacts/
+COPY --from=builder /app-assets-smart-contract/target/ink/appassets.wasm /app-assets-smart-contract/artifacts/
+COPY --from=builder /app-assets-smart-contract/target/ink/metadata.json /app-assets-smart-contract/artifacts/
